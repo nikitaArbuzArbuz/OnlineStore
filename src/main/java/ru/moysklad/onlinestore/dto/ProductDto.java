@@ -14,5 +14,5 @@ public class ProductDto {
     private String description;
     @Min(value = 0, message = "Price cannot be less than 0")
     private double price;
-    private boolean inStock ;
+    private boolean inStock;
 }

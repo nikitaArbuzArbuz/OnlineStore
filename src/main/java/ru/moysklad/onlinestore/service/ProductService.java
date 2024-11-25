@@ -2,6 +2,7 @@ package ru.moysklad.onlinestore.service;
 
 
 import ru.moysklad.onlinestore.dto.ProductDto;
+
 import java.util.List;
 
 public interface ProductService {
