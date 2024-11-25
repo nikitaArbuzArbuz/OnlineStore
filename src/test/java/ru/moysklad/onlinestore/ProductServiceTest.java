@@ -76,7 +76,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    void testUpdateProduct_Success() {
+    void testUpdateProduct() {
         Long productId = 1L;
         ProductDto updatedProductDto = new ProductDto();
         updatedProductDto.setName("Updated Name")
