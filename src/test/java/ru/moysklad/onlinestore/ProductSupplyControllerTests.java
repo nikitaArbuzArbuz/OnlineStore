@@ -7,10 +7,12 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.moysklad.onlinestore.controller.ProductSupplyController;
 import ru.moysklad.onlinestore.dto.ProductSupplyDto;
 import ru.moysklad.onlinestore.service.ProductSupplyService;
 
@@ -22,9 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-@AutoConfigureWebClient
+@WebMvcTest(controllers = ProductSupplyController.class)
 public class ProductSupplyControllerTests {
     @Autowired
     private MockMvc mockMvc;
@@ -81,7 +81,7 @@ public class ProductSupplyControllerTests {
     void testUpdateSupply() throws Exception {
         when(productSupplyService.updateProductSupply(eq(1L), any(ProductSupplyDto.class))).thenReturn(supplyDto);
 
-        mockMvc.perform(put("/api/supplies/{id}", 1L)
+        mockMvc.perform(patch("/api/supplies/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(supplyDto)))
                 .andExpect(status().isOk())
