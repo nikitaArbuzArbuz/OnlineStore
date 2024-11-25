@@ -4,19 +4,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.moysklad.onlinestore.util.exceptions.ExceptionResponse;
+import ru.moysklad.onlinestore.util.exceptions.ProductNotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
-@ControllerAdvice
+@RestControllerAdvice("ru.moysklad.onlinestore.controller")
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<String> handleNotFoundException() {
-        return new ResponseEntity<>("Продукт не найден", HttpStatus.NOT_FOUND);
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleProductNotFoundException(ProductNotFoundException ex) {
+        return new ResponseEntity<>(new ExceptionResponse(ex.getMessage(), ex.getTimestamp()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
