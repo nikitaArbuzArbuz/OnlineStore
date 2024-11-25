@@ -42,5 +42,18 @@ public class ProductController {
         productService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/filter")
+    public List<ProductDto> getAllProductsAfterFilter(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) Boolean inStock,
+            @RequestParam(defaultValue = "name") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction,
+            @RequestParam(required = false) Integer limit
+    ) {
+        return productService.getFilteredProducts(name, minPrice, maxPrice, inStock, sortBy, direction, limit);
+    }
 }
 

@@ -15,4 +15,6 @@ public interface ProductService {
     ProductDto updateProduct(Long id, ProductDto product);
 
     void deleteProduct(Long id);
+
+    List<ProductDto> getFilteredProducts(String name, Double minPrice, Double maxPrice, Boolean inStock, String sortBy, String direction, Integer limit);
 }

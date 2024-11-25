@@ -2,6 +2,7 @@ package ru.moysklad.onlinestore.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 @Getter
 @Setter
@@ -10,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Accessors(chain = true)
 @Table(name = "products", schema = "store")
 public class Product {
     @Id

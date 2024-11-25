@@ -11,6 +11,7 @@ import ru.moysklad.onlinestore.service.ProductService;
 import ru.moysklad.onlinestore.util.exceptions.ProductNotFoundException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +48,27 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long productId) {
         productRepository.delete(productRepository.findById(productId).orElseThrow(() ->
                 new ProductNotFoundException("Product not found", System.currentTimeMillis())));
+    }
+
+    @Override
+    public List<ProductDto> getFilteredProducts(String name, Double minPrice, Double maxPrice,
+                                                Boolean inStock, String sortBy, String direction, Integer limit) {
+
+        List<Product> filteredProducts = productRepository.findAll().stream()
+                .filter(product -> name == null || product.getName().contains(name))
+                .filter(product -> minPrice == null || product.getPrice() >= minPrice)
+                .filter(product -> maxPrice == null || product.getPrice() <= maxPrice)
+                .filter(product -> inStock == null || product.isInStock() == inStock)
+                .sorted((p1, p2) -> switch (sortBy) {
+                    case "name" ->
+                            direction.equals("asc") ? p1.getName().compareTo(p2.getName()) : p2.getName().compareTo(p1.getName());
+                    case "price" ->
+                            direction.equals("asc") ? Double.compare(p1.getPrice(), p2.getPrice()) : Double.compare(p2.getPrice(), p1.getPrice());
+                    default -> 0;
+                })
+                .limit(limit)
+                .collect(Collectors.toList());
+
+        return productMapper.map(filteredProducts);
     }
 }

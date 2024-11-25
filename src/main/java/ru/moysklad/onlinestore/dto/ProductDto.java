@@ -3,9 +3,12 @@ package ru.moysklad.onlinestore.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class ProductDto {
     @NotBlank(message = "Please provide a name")
     @Size(max = 255, message = "The name must not exceed 255 characters")
