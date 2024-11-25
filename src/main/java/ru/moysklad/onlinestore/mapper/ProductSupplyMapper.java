@@ -20,9 +20,6 @@ public abstract class ProductSupplyMapper {
     @Mapping(target = "product", source = "productId", qualifiedByName = "mapProductFromId")
     public abstract ProductSupply map(ProductSupplyDto productSupplyDto);
 
-    @IterableMapping(elementTargetType = ProductSupplyDto.class)
-    public abstract List<ProductSupplyDto> mapSupplies(List<ProductSupply> productSupplies);
-
     @Mapping(target = "id", ignore = true)
     public abstract void updateProductSupplyFromDto(ProductSupplyDto productSupplyDto, @MappingTarget ProductSupply productSupply);
 }

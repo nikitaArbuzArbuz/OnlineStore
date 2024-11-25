@@ -20,9 +20,6 @@ public abstract class ProductSaleMapper {
     @Mapping(target = "product", source = "productId", qualifiedByName = "mapProductFromId")
     public abstract ProductSale map(ProductSaleDto productSaleDto);
 
-    @IterableMapping(elementTargetType = ProductSaleDto.class)
-    public abstract List<ProductSaleDto> mapSales(List<ProductSale> productSales);
-
     @Mapping(target = "id", ignore = true)
     public abstract void updateProductSaleFromDto(ProductSaleDto productSaleDto, @MappingTarget ProductSale productSale);
 }

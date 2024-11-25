@@ -3,7 +3,7 @@ package ru.moysklad.onlinestore.service;
 import ru.moysklad.onlinestore.dto.ProductSupplyDto;
 
 public interface ProductSupplyService {
-    public ProductSupplyDto createProductSupply(ProductSupplyDto productSupplyDto);
+    ProductSupplyDto createProductSupply(ProductSupplyDto productSupplyDto);
 
     void deleteProductSupply(Long id);
 
