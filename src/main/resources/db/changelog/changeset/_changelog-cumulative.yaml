@@ -32,3 +32,23 @@ databaseChangeLog:
         - sqlFile:
             path: 003-210725112024-create-tables.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: 004-004526112024-add-column-product
+      author: Nikita Pushkin
+      comment: Create tables in tms schema
+      runOnChange: true
+      changes:
+        - sqlFile:
+            path: 004-004526112024-add-column-product.sql
+            relativeToChangelogFile: true
+
+  - changeSet:
+      id: 0005-004726112024-create-tables-sale-supply
+      author: Nikita Pushkin
+      comment: Create tables in tms schema
+      runOnChange: true
+      changes:
+        - sqlFile:
+            path: 005-004726112024-create-tables-sale-supply.sql
+            relativeToChangelogFile: true

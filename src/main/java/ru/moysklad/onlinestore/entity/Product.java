@@ -33,4 +33,8 @@ public class Product {
     @Column(name = "in_stock")
     @Builder.Default
     private boolean inStock = false;
+
+    @Column(name = "quantity_in_stock", nullable = false)
+    @Builder.Default
+    private Integer quantityInStock = 0;
 }

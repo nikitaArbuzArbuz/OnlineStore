@@ -3,10 +3,11 @@ package ru.moysklad.onlinestore.mapper;
 import org.mapstruct.*;
 import ru.moysklad.onlinestore.dto.ProductDto;
 import ru.moysklad.onlinestore.entity.Product;
+import ru.moysklad.onlinestore.util.ProductMapperHelper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {ProductMapperHelper.class})
 public abstract class ProductMapper {
     public abstract ProductDto map(Product product);
 
