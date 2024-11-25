@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
-    public ResponseEntity<String> handleNotFoundException(NoSuchElementException e) {
+    public ResponseEntity<String> handleNotFoundException() {
         return new ResponseEntity<>("Продукт не найден", HttpStatus.NOT_FOUND);
     }
 
