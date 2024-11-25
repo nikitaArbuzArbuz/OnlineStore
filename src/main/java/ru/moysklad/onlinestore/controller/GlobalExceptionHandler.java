@@ -6,7 +6,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import ru.moysklad.onlinestore.util.exceptions.ExceptionResponse;
+import ru.moysklad.onlinestore.util.responses.ExceptionResponse;
 import ru.moysklad.onlinestore.util.exceptions.ProductNotFoundException;
 
 import java.util.HashMap;

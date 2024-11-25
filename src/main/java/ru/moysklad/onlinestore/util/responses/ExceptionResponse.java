@@ -1,4 +1,4 @@
-package ru.moysklad.onlinestore.util.exceptions;
+package ru.moysklad.onlinestore.util.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
