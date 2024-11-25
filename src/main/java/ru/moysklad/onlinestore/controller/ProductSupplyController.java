@@ -8,7 +8,7 @@ import ru.moysklad.onlinestore.dto.ProductSupplyDto;
 import ru.moysklad.onlinestore.service.ProductSupplyService;
 
 @RestController
-@RequestMapping("/supplies")
+@RequestMapping("/api/supplies")
 @RequiredArgsConstructor
 public class ProductSupplyController {
 
@@ -24,7 +24,7 @@ public class ProductSupplyController {
         return productSupplyService.getProductSupplyById(id);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ProductSupplyDto updateProductSupply(@PathVariable Long id, @RequestBody ProductSupplyDto productSupplyDto) {
         return productSupplyService.updateProductSupply(id, productSupplyDto);
     }

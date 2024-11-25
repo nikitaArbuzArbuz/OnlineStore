@@ -47,7 +47,7 @@ public class ProductSupplyControllerTests {
     void testCreateSupply() throws Exception {
         when(productSupplyService.createProductSupply(any(ProductSupplyDto.class))).thenReturn(supplyDto);
 
-        mockMvc.perform(post("/supplies")
+        mockMvc.perform(post("/api/supplies")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(supplyDto)))
                 .andExpect(status().isCreated())
@@ -60,7 +60,7 @@ public class ProductSupplyControllerTests {
     void testGetSupplyById() throws Exception {
         when(productSupplyService.getProductSupplyById(1L)).thenReturn(supplyDto);
 
-        mockMvc.perform(get("/supplies/{id}", 1L))
+        mockMvc.perform(get("/api/supplies/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.documentName").value(supplyDto.getDocumentName()))
                 .andExpect(jsonPath("$.productId").value(supplyDto.getProductId()))
@@ -71,7 +71,7 @@ public class ProductSupplyControllerTests {
     void testDeleteSupply() throws Exception {
         doNothing().when(productSupplyService).deleteProductSupply(1L);
 
-        mockMvc.perform(delete("/supplies/{id}", 1L))
+        mockMvc.perform(delete("/api/supplies/{id}", 1L))
                 .andExpect(status().isOk());
 
         Mockito.verify(productSupplyService, Mockito.times(1)).deleteProductSupply(1L);
@@ -81,7 +81,7 @@ public class ProductSupplyControllerTests {
     void testUpdateSupply() throws Exception {
         when(productSupplyService.updateProductSupply(eq(1L), any(ProductSupplyDto.class))).thenReturn(supplyDto);
 
-        mockMvc.perform(put("/supplies/{id}", 1L)
+        mockMvc.perform(put("/api/supplies/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(supplyDto)))
                 .andExpect(status().isOk())

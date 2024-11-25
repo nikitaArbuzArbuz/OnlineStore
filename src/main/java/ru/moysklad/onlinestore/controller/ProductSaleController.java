@@ -8,7 +8,7 @@ import ru.moysklad.onlinestore.dto.ProductSaleDto;
 import ru.moysklad.onlinestore.service.ProductSaleService;
 
 @RestController
-@RequestMapping("/sales")
+@RequestMapping("/api/sales")
 @RequiredArgsConstructor
 public class ProductSaleController {
 

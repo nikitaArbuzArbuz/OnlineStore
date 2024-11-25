@@ -50,7 +50,7 @@ public class ProductSaleControllerTests {
     void createProductSale() throws Exception {
         Mockito.when(productSaleService.createProductSale(any(ProductSaleDto.class))).thenReturn(productSaleDto);
 
-        mockMvc.perform(post("/sales")
+        mockMvc.perform(post("/api/sales")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(productSaleDto)))
                 .andExpect(status().isCreated())
@@ -69,7 +69,7 @@ public class ProductSaleControllerTests {
                 .setQuantitySold(10);
         Mockito.when(productSaleService.getProductSaleById(1L)).thenReturn(productSaleDto);
 
-        mockMvc.perform(get("/sales/{id}", 1L))
+        mockMvc.perform(get("/api/sales/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.documentName", is("Sale Doc 1")))
@@ -86,7 +86,7 @@ public class ProductSaleControllerTests {
                 .setQuantitySold(20);
         Mockito.when(productSaleService.updateProductSale(eq(1L), any(ProductSaleDto.class))).thenReturn(updatedSaleDto);
 
-        mockMvc.perform(patch("/sales/{id}", 1L)
+        mockMvc.perform(patch("/api/sales/{id}", 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedSaleDto)))
                 .andExpect(status().isOk())
@@ -100,7 +100,7 @@ public class ProductSaleControllerTests {
     void deleteProductSale() throws Exception {
         doNothing().when(productSaleService).deleteProductSale(1L);
 
-        mockMvc.perform(delete("/sales/{id}", 1L))
+        mockMvc.perform(delete("/api/sales/{id}", 1L))
                 .andExpect(status().isOk());
 
         Mockito.verify(productSaleService, Mockito.times(1)).deleteProductSale(1L);
