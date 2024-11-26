@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: TaskManagementSystem
+
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:postgresql://localhost:5433/db_store
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: db/changelog/master-changelog.yaml
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/db_store
+    user: postgres
+    password: postgres
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate

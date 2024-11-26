@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: OnlineStore
+
+  datasource:
+    url: jdbc:postgresql://db:5432/db_store
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: db/changelog/master-changelog.yaml
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://db:5432/db_store
+    user: postgres
+    password: postgres
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
